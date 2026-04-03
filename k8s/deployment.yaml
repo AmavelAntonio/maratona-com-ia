@@ -18,6 +18,8 @@ spec:
         prometheus.io/port: "8000"
         prometheus.io/path: "/metrics"
     spec:
+      imagePullSecrets:
+      - name: dockerhub-auth
       containers:
       - name: encontros-tech
         image: amavelantonio/encontros-tech
