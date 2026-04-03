@@ -22,7 +22,7 @@ spec:
       - name: dockerhub-auth
       containers:
       - name: encontros-tech
-        image: amavelantonio/encontros-tech
+        image: amavelantonio/app-tech:latest
         ports:
         - containerPort: 8000
         env:
