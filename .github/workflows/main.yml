@@ -62,6 +62,15 @@ jobs:
     - name: Criar namespace de homologação
       run: kubectl create namespace tech-homolog --dry-run=client -o yaml | kubectl apply -f -
 
+    - name: Garantir Secret de Autenticação do Docker Hub
+      run: |
+        kubectl create secret docker-registry dockerhub-auth \
+          --docker-server=https://index.docker.io/v1/ \
+          --docker-username=${{ vars.DOCKERHUB_USERNAME }} \
+          --docker-password=${{ secrets.DOCKERHUB_TOKEN }} \
+          -n tech-homolog \
+          --dry-run=client -o yaml | kubectl apply -f -
+
     - name: Create secrets in prod
       run: |
         kubectl create secret generic database-secret \
